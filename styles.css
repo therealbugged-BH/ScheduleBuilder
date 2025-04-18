@@ -1,0 +1,39 @@
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 50%,
+    rgba(237, 221, 83, 1) 100%
+  );
+}
+
+/* This is what is being referenced here  <div class="container"> the . before signifies a class */
+.container {
+  display: flex; /* May need to look this up, really important but is used often*/
+  flex-direction: column; /* Used to display the elements vertically rather than horizontally */
+  align-items: center; /* Centering perpendicular to flex-direction, as flex-direction is vertical, it centers it horizontally */
+}
+
+/* Title "Welcome to Broncohacks2025" marked by the h1 element */
+h1 {
+  text-align: center;
+  color: white;
+}
+
+/* Image */
+img {
+  width: 20vw; /* 100vw is the whole screen, so 20vw is 1/5 of the screen size*/
+  height: auto; /* auto makes it retain its shape, matching the height of a set width to make the ratio the same */
+  border-radius: 50%; /* Circle Effect */
+}
+
+/* Update Counter Button */
+button {
+  margin-top: 1em; /* Margin defines seperation among an element. This is specifing 1em seperation from whatever is above it*/
+  padding: 0.25rem; /* Opposite of margin, expands from the root element a specific amount with extra background space */
+  background-color: green;
+}
+
+span {
+  margin: 1em;
+}
