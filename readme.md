@@ -7,6 +7,3 @@
 "Open with Live Server"
 ![alt text](OpenWithLiveServer.png)
 
-# Should see this:
-
-![alt text](BHLogo.png)
