@@ -9,15 +9,34 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="title">Welcome to Schedule Builder</h1>
-      <img src="BHLogo.png" />
-      <button id="clicker">Update Counter</button>
-      <span class="counter">0</span>
-      <a href="https://www.broncohacks.org/">Go to BroncoHacks.org</a>
-      <a href="./other.html">Go to Other Page</a>
-      <label for="name">Enter your tasks in parentheses (ex: eating) and how long you think it will take you in minutes. </label>
-      <input type="text" id="name" name="name">
+      <!-- Top box: title and image -->
+      <div class="top-box">
+        <h1 class="title">Welcome to Schedule Builder</h1>
+        <img src="BHLogo.png" />
+      </div>
+  
+      <!-- Bottom boxes container -->
+      <div class="bottom-boxes">
+        <!-- Left box: everything else goes here -->
+        <div class="box left-box">
+          <label for="name">
+            enter task
+          </label>
+          <input type="text" id="name" name="name" />
+          <button id="clicker">Update Counter</button>
+          <span class="counter">0</span>
+        </div>
+  
+        <!-- Middle and right boxes are currently empty -->
+        <div class="box middle-box">
+          <!-- You can add more content here later -->
+        </div>
+        <div class="box right-box">
+          <!-- You can add more content here later -->
+        </div>
+      </div>
     </div>
+  
     <script src="script.js"></script>
   </body>
 </html>

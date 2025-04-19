@@ -37,3 +37,37 @@ button {
 span {
   margin: 1em;
 }
+
+.top-box {
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  margin-bottom: 1em;
+}
+
+.bottom-boxes {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.box {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1em;
+  width: 25vw;
+  min-height: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.left-box {
+  /* Optional: style left box differently */
+}
+
+.middle-box, .right-box {
+  /* Placeholder styles so they’re visibly boxes */
+  opacity: 0.5;
+}
+
