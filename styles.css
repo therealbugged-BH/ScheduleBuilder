@@ -75,8 +75,15 @@ span {
   opacity: 0.5;
 }
 
-.right-box {
-  /* Placeholder styles so they’re visibly boxes */
-  opacity: 0.5;
+.right-box div {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  border-left: 4px solid #4CAF50;
+  background: #f0f0f0;
 }
+.right-box div:nth-child(even) {
+  border-left: 4px solid #999;
+  background: #e0e0e0;
+}
+
 

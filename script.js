@@ -1,69 +1,75 @@
-// This is how you get the dom element of this <button id="clicker">Update Counter</button>
-const clicker = document.getElementById("clicker");
-// It returns an array so access the first instance of it with [0]
-const counter = document.getElementsByClassName("counter")[0];
-//for input
-const input = document.getElementById('taskInput')
+const addTaskButton = document.getElementById("addTaskButton");
+const input = document.getElementById("taskInput");
+const displayArea = document.getElementById("displayArea");
+const rightBox = document.querySelector(".right-box");
 
-
-//arrays to store the tasks
-const taskDescriptions = [];
-const taskValues = [];
 const taskArray = [];
 
-// Add click event
+// Add Task
 function handleAddTask() {
-  const inputValue = input.value.trim(); // Get and clean input
-  // Split by comma
-  const parts = inputValue.split(',');
-
+  const inputValue = input.value.trim();
+  const parts = inputValue.split(",");
 
   if (parts.length === 2) {
-    const task = parts[0].trim();      // e.g. "doing chemistry homework"
-    const value = parseFloat(parts[1]); // e.g. 80
+    const task = parts[0].trim();
+    const minutes = parseFloat(parts[1]);
 
-    // Validate the number
-    if (!isNaN(value)) {
-      taskDescriptions.push(task);
-      taskValues.push(value);
-      taskArray.push([task, value]);
-
-      console.log("Task added!");
-      console.log("Descriptions:", taskDescriptions);
-      console.log("Values:", taskValues);
-
-      document.getElementById('displayArea').innerText = taskArray
-      .map(([task, val], index) => `${index + 1}. ${task} (${val})`)
-      .join('\n');
-
+    if (!isNaN(minutes)) {
+      taskArray.push({ task, minutes });
+      updateMiddleDisplay();
+      updateScheduleDisplay();
     } else {
       alert("Please enter a valid number after the comma.");
     }
-
   } else {
-    alert("Please enter the task in this format: description, number");
+    alert("Please enter in the format: task, minutes");
   }
 
- 
-  // Clear input
-  input.value = '';
-};
+  input.value = "";
+}
 
-// Add task on button click
-clicker.addEventListener("click", handleAddTask);
+// Display in Middle Column
+function updateMiddleDisplay() {
+  displayArea.innerText = taskArray
+    .map((item, index) => `${index + 1}. ${item.task} (${item.minutes} mins)`)
+    .join("\n");
+}
 
-// Add task on Enter key press inside input
-input.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault(); 
-    handleAddTask();
-    const newVal = Number(counter.innerText) + 1;
-    counter.innerText = newVal;
+// Display Sorted in Right Column
+function updateScheduleDisplay() {
+  const sorted = [...taskArray].sort((a, b) => a.minutes - b.minutes);
+  let currentTime = new Date();
+  currentTime.setHours(7, 0, 0, 0); // Start at 7:00 AM
+
+  let scheduleHTML = "<h3>Task Schedule</h3>";
+
+  for (let i = 0; i < sorted.length; i++) {
+    const task = sorted[i];
+    const taskStart = formatTime(currentTime);
+    currentTime.setMinutes(currentTime.getMinutes() + task.minutes);
+    const taskEnd = formatTime(currentTime);
+
+    scheduleHTML += `<div><strong>${task.task}</strong> - ${taskStart} to ${taskEnd} (${task.minutes} mins)</div>`;
+
+    // Add 20% rest time
+    const restTime = Math.ceil(task.minutes * 0.2);
+    if (i < sorted.length - 1) {
+      const restStart = formatTime(currentTime);
+      currentTime.setMinutes(currentTime.getMinutes() + restTime);
+      const restEnd = formatTime(currentTime);
+      scheduleHTML += `<div style="color: gray;">Rest - ${restStart} to ${restEnd} (${restTime} mins)</div>`;
+    }
   }
+
+  rightBox.innerHTML = scheduleHTML;
+}
+
+// Format time as h:mm AM/PM
+function formatTime(date) {
+  return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+}
+
+addTaskButton.addEventListener("click", handleAddTask);
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") handleAddTask();
 });
-
-
-
-
-
-
