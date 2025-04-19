@@ -2,9 +2,9 @@ body {
   font-family: Verdana, sans-serif;
   background: linear-gradient(
     90deg,
-    rgba(42, 123, 155, 1) 0%,
-    hsl(216, 26%, 65%) 50%,
-    #deb1dc 100%
+    #df81a2 0%,
+    hsl(350, 33%, 64%) 50%,
+    #ea9886 100%
   );
 }
 
@@ -22,6 +22,10 @@ h1 {
   font-family: Verdana;
 }
 
+h3 {
+  text-align: center;
+}
+
 /* Image */
 img {
   width: 10vw; /* 100vw is the whole screen, so 20vw is 1/5 of the screen size*/
@@ -33,7 +37,7 @@ img {
 button {
   margin-top: 1em; /* Margin defines seperation among an element. This is specifing 1em seperation from whatever is above it*/
   padding: 0.25rem; /* Opposite of margin, expands from the root element a specific amount with extra background space */
-  background-color: green;
+  background-color: rgba(51, 152, 58, 0.7);
   font-family: Verdana;
 }
 
@@ -69,11 +73,13 @@ span {
 .left-box {
   /* Optional: style left box differently */
   opacity: 1;
+  text-align: center;
 }
 
 .middle-box {
   /* Placeholder styles so they’re visibly boxes */
   opacity: 1;
+  text-align: center;
 }
 
 .right-box div {
