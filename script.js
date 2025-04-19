@@ -14,12 +14,14 @@ console.log(clicker.innerText); //Prints "Update Counter"
 //arrays to store the tasks
 const taskDescriptions = [];
 const taskValues = [];
+const taskArray = [];
 
 // Add click event
 function handleAddTask() {
   const inputValue = input.value.trim(); // Get and clean input
   // Split by comma
   const parts = inputValue.split(',');
+
 
   if (parts.length === 2) {
     const task = parts[0].trim();      // e.g. "doing chemistry homework"
@@ -29,10 +31,16 @@ function handleAddTask() {
     if (!isNaN(value)) {
       taskDescriptions.push(task);
       taskValues.push(value);
+      taskArray.push([task, value]);
 
       console.log("Task added!");
       console.log("Descriptions:", taskDescriptions);
       console.log("Values:", taskValues);
+
+      document.getElementById('displayArea').innerText = taskArray
+      .map(([task, val], index) => `${index + 1}. ${task} (${val})`)
+      .join('\n');
+
     } else {
       alert("Please enter a valid number after the comma.");
     }
@@ -42,7 +50,7 @@ function handleAddTask() {
   }
 
  // Get the input value
-  document.getElementById('displayArea').innerText = inputValue; // Display it in the div
+ // document.getElementById('displayArea').innerText = taskArray; // Display it in the div
   // Clear input
   input.value = '';
 };
