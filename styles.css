@@ -67,9 +67,15 @@ span {
 
 .left-box {
   /* Optional: style left box differently */
+  opacity: 1;
 }
 
-.middle-box, .right-box {
+.middle-box {
+  /* Placeholder styles so they’re visibly boxes */
+  opacity: 0.5;
+}
+
+.right-box {
   /* Placeholder styles so they’re visibly boxes */
   opacity: 0.5;
 }
