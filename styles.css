@@ -1,4 +1,5 @@
 body {
+  font-family: Verdana, sans-serif;
   background: linear-gradient(
     90deg,
     rgba(42, 123, 155, 1) 0%,
@@ -72,7 +73,7 @@ span {
 
 .middle-box {
   /* Placeholder styles so they’re visibly boxes */
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .right-box div {
@@ -86,4 +87,22 @@ span {
   background: #e0e0e0;
 }
 
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list li {
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  cursor: grab;
+  user-select: none;
+}
+
+.task-list li.dragging {
+  opacity: 0.5;
+}
 

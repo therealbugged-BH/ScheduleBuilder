@@ -3,9 +3,9 @@ const input = document.getElementById("taskInput");
 const displayArea = document.getElementById("displayArea");
 const rightBox = document.querySelector(".right-box");
 
-const taskArray = [];
+let taskArray = [];
 
-// Add Task
+// Add a task
 function handleAddTask() {
   const inputValue = input.value.trim();
   const parts = inputValue.split(",");
@@ -28,32 +28,73 @@ function handleAddTask() {
   input.value = "";
 }
 
-// Display in Middle Column
+// Display tasks as draggable list
 function updateMiddleDisplay() {
-  displayArea.innerText = taskArray
-    .map((item, index) => `${index + 1}. ${item.task} (${item.minutes} mins)`)
-    .join("\n");
+  displayArea.innerHTML = "";
+
+  taskArray.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${item.task} (${item.minutes} mins)`;
+    li.setAttribute("draggable", "true");
+    li.dataset.index = index;
+
+    // Drag events
+    li.addEventListener("dragstart", handleDragStart);
+    li.addEventListener("dragover", handleDragOver);
+    li.addEventListener("drop", handleDrop);
+    li.addEventListener("dragend", handleDragEnd);
+
+    displayArea.appendChild(li);
+  });
+  updateScheduleDisplay();
 }
 
-// Display Sorted in Right Column
+let draggedIndex = null;
+
+function handleDragStart(e) {
+  draggedIndex = parseInt(e.target.dataset.index);
+  e.target.classList.add("dragging");
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  const targetIndex = parseInt(e.target.dataset.index);
+
+  if (draggedIndex !== null && draggedIndex !== targetIndex) {
+    const draggedItem = taskArray[draggedIndex];
+    taskArray.splice(draggedIndex, 1);
+    taskArray.splice(targetIndex, 0, draggedItem);
+    updateMiddleDisplay();
+  }
+}
+
+function handleDragEnd(e) {
+  e.target.classList.remove("dragging");
+  draggedIndex = null;
+}
+
+// Display scheduled tasks in the right box (based on current order)
 function updateScheduleDisplay() {
-  const sorted = [...taskArray].sort((a, b) => a.minutes - b.minutes);
+  const ordered = [...taskArray]; // use current order
   let currentTime = new Date();
-  currentTime.setHours(7, 0, 0, 0); // Start at 7:00 AM
+  currentTime.setHours(7, 0, 0, 0);
 
   let scheduleHTML = "<h3>Task Schedule</h3>";
 
-  for (let i = 0; i < sorted.length; i++) {
-    const task = sorted[i];
+  for (let i = 0; i < ordered.length; i++) {
+    const task = ordered[i];
     const taskStart = formatTime(currentTime);
     currentTime.setMinutes(currentTime.getMinutes() + task.minutes);
     const taskEnd = formatTime(currentTime);
 
     scheduleHTML += `<div><strong>${task.task}</strong> - ${taskStart} to ${taskEnd} (${task.minutes} mins)</div>`;
 
-    // Add 20% rest time
-    const restTime = Math.ceil(task.minutes * 0.2);
-    if (i < sorted.length - 1) {
+    if (i < ordered.length - 1) {
+      const restTime = Math.ceil(task.minutes * 0.2);
       const restStart = formatTime(currentTime);
       currentTime.setMinutes(currentTime.getMinutes() + restTime);
       const restEnd = formatTime(currentTime);
@@ -64,11 +105,11 @@ function updateScheduleDisplay() {
   rightBox.innerHTML = scheduleHTML;
 }
 
-// Format time as h:mm AM/PM
 function formatTime(date) {
   return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 }
 
+// Events
 addTaskButton.addEventListener("click", handleAddTask);
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") handleAddTask();
