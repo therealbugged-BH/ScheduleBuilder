@@ -49,18 +49,17 @@ function handleAddTask() {
     alert("Please enter the task in this format: description, number");
   }
 
- // Get the input value
- // document.getElementById('displayArea').innerText = taskArray; // Display it in the div
+ 
   // Clear input
   input.value = '';
 };
 
 //Now, lets update the counter on button click!
 // whenever the clicker elemnt is clicked (via the "click"), it will run this function
-clicker.addEventListener("click", (e) => {
+/*clicker.addEventListener("click", (e) => {
   const newVal = Number(counter.innerText) + 1;
   counter.innerText = newVal;
-});
+});*/
 
 // Add task on button click
 clicker.addEventListener("click", handleAddTask);
@@ -78,11 +77,5 @@ input.addEventListener("keydown", (event) => {
 
 
 
-/*function displayText() {
-  const input = document.getElementById('taskInput').value; // Get the input value
-  document.getElementById('displayArea').innerText = input; // Display it in the div
-}
-
-document.getElementById('clicker').addEventListener('click', displayText);*/
 
 
