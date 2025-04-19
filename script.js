@@ -9,7 +9,7 @@ const taskValues = [];
 const counter = document.getElementsByClassName("counter")[0];
 
 //for input
-const input = document.getElementById('taskInput');
+const input = document.getElementById('taskInput')
 
 // You can see all of these values in your browser's inspector
 console.log(clicker, counter);
@@ -52,16 +52,17 @@ clicker.addEventListener('click', function() {
     alert("Please enter the task in this format: description, number");
   }
 
-
+ // Get the input value
+  document.getElementById('displayArea').innerText = inputValue; // Display it in the div
   // Clear input
   input.value = '';
 });
 
-function displayText() {
+/*function displayText() {
   const input = document.getElementById('taskInput').value; // Get the input value
   document.getElementById('displayArea').innerText = input; // Display it in the div
 }
 
-document.getElementById('clicker').addEventListener('click', displayText);
+document.getElementById('clicker').addEventListener('click', displayText);*/
 
 
