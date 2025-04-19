@@ -2,8 +2,8 @@ body {
   background: linear-gradient(
     90deg,
     rgba(42, 123, 155, 1) 0%,
-    rgba(87, 199, 133, 1) 50%,
-    rgba(237, 221, 83, 1) 100%
+    hsl(216, 26%, 65%) 50%,
+    #deb1dc 100%
   );
 }
 
@@ -22,7 +22,7 @@ h1 {
 
 /* Image */
 img {
-  width: 20vw; /* 100vw is the whole screen, so 20vw is 1/5 of the screen size*/
+  width: 10vw; /* 100vw is the whole screen, so 20vw is 1/5 of the screen size*/
   height: auto; /* auto makes it retain its shape, matching the height of a set width to make the ratio the same */
   border-radius: 50%; /* Circle Effect */
 }
