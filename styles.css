@@ -14,10 +14,11 @@ body {
   align-items: center; /* Centering perpendicular to flex-direction, as flex-direction is vertical, it centers it horizontally */
 }
 
-/* Title "Welcome to Broncohacks2025" marked by the h1 element */
+/* Title "Welcome to Schedule Builder" marked by the h1 element */
 h1 {
   text-align: center;
   color: white;
+  font-family: Verdana;
 }
 
 /* Image */
@@ -32,10 +33,12 @@ button {
   margin-top: 1em; /* Margin defines seperation among an element. This is specifing 1em seperation from whatever is above it*/
   padding: 0.25rem; /* Opposite of margin, expands from the root element a specific amount with extra background space */
   background-color: green;
+  font-family: Verdana;
 }
 
 span {
   margin: 1em;
+  font-family: Verdana;
 }
 
 .top-box {
