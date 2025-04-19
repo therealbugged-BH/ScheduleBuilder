@@ -5,11 +5,6 @@ const counter = document.getElementsByClassName("counter")[0];
 //for input
 const input = document.getElementById('taskInput')
 
-// You can see all of these values in your browser's inspector
-console.log(clicker, counter);
-
-// .innerText returns the text associated with it
-console.log(clicker.innerText); //Prints "Update Counter"
 
 //arrays to store the tasks
 const taskDescriptions = [];
@@ -53,13 +48,6 @@ function handleAddTask() {
   // Clear input
   input.value = '';
 };
-
-//Now, lets update the counter on button click!
-// whenever the clicker elemnt is clicked (via the "click"), it will run this function
-/*clicker.addEventListener("click", (e) => {
-  const newVal = Number(counter.innerText) + 1;
-  counter.innerText = newVal;
-});*/
 
 // Add task on button click
 clicker.addEventListener("click", handleAddTask);
